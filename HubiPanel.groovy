@@ -69,7 +69,7 @@ def mainPage() {
                 input(type: "number", name: "dashboardAppId", title: "Base Dashboard App Id - Can be obtained from any dashboard, try activating fullscreen and checking the url bar\nEx: (http://255.255.255.255/apps/api/<span style='font-weight: bold;'>1</span>/menu?access_token=xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx))", required: true, submitOnChange: true)
                 input(type: "text", name: "openWeatherMapKey", title: "Open Weather Map api key (leave blank to disable weather)", required: false, submitOnChange: true)
                 
-                def accessStr = """${state.fullEndpoint}?access_token=${state.secret}&dashboardAppId=${dashboardAppId}&dashboardAccessToken=${dashboardToken}${openWeatherMapKey ? "&openWeatherToken=${openWeatherMapKey}" : ""}"""
+                def accessStr = """${state.fullEndpoint}?access_token=${state.secret}&dashboardAppId=${dashboardAppId}&dashboardAccessToken=${dashboardToken}${openWeatherMapKey ? "&openWeatherToken=${openWeatherMapKey}" : ""}""".replace('http://', 'https://')
                 
                 paragraph("""<a href="${accessStr}" target="_blank">${accessStr}</a>""")
             }
